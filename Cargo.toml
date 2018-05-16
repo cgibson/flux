@@ -1,0 +1,7 @@
+[package]
+name = "flux"
+version = "0.0.1"
+authors = ["Chris Gibson <cgibson@mrvoxel.com>"]
+
+[dependencies]
+nalgebra = "0.11.0"
