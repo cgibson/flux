@@ -1,13 +1,13 @@
 
-use na::{Point3, Vector3};
+use glm::{DVec3};
 use util::math::Ray;
 
 pub struct Camera {
-    pub position: Point3<f64>,
+    pub position: DVec3,
 }
 
 impl Camera {
-    pub fn new(position: Point3<f64>) -> Camera {
+    pub fn new(position: DVec3) -> Camera {
         Camera {position: position}
     }
 }

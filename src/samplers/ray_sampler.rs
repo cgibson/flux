@@ -1,4 +1,4 @@
-use na::{Vector3, Point3};
+use glm::{DVec3};
 
 use util::math::Ray;
 use util::color::{Spectrum,Pixel};
@@ -27,13 +27,13 @@ struct SimpleSampler {
 
 impl RaySampler for SimpleSampler {
     fn generate_rays(&self, camera: Camera) -> Vec<Ray> {
-        let center: Point3<f64> = camera.position;
+        let center: DVec3 = camera.position;
         let mut rays = Vec::new();
         for x in -1i32..1i32 {
             for y in -1i32..1i32 {
-                let offset = Vector3::new(x as f64, y as f64, 0.0);
+                let offset = DVec3::new(x as f64, y as f64, 0.0);
                 rays.push(Ray::new(center + offset,
-                        Vector3::new(1.0, 0.0, 0.0)));
+                        DVec3::new(1.0, 0.0, 0.0)));
             }
         }
         return rays;
