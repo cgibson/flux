@@ -1,20 +1,20 @@
-use glm::{DVec3};
+use na::{Point3, Vector3};
 
 use util::math::{Ray};
 use geometry::shape::{Shape, Hit};
 
 
 pub struct SphereShape {
-    pub position: DVec3,
+    pub position: Point3<f64>,
     pub radius: f64,
 }
 
 impl SphereShape {
-    pub fn new(position: DVec3, radius: f64) -> SphereShape {
+    pub fn new(position: Point3<f64>, radius: f64) -> SphereShape {
         SphereShape {position: position, radius: radius}
     }
 
-    pub fn get_normal(&self, pt: DVec3) -> DVec3 {
+    pub fn get_normal(&self, pt: Point3<f64>) -> Vector3<f64> {
         (pt - self.position).normalize()
     }
 }
@@ -24,11 +24,11 @@ impl Shape for SphereShape {
     fn intersect(&self, ray: Ray) -> Option<Hit> {
         let mut hit: Hit = Hit::zero();
 
-        let dir: DVec3 = ray.direction;
-        let pt: DVec3 = ray.origin;
+        let dir: Vector3<f64> = ray.direction;
+        let pt: Point3<f64> = ray.origin;
 
         let a: f64 = dir.dot(&dir);
-        let tmp: DVec3 = pt - self.position;
+        let tmp: Vector3<f64> = pt - self.position;
         let b: f64 = 2.0 * dir.dot(&tmp);
         let c: f64 = tmp.dot(&tmp) - self.radius.powi(2);
 

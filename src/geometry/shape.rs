@@ -1,5 +1,5 @@
 use std::fmt;
-use glm::{DVec3};
+use na::{Point3, Vector3};
 
 use util::math::{Ray};
 
@@ -8,20 +8,20 @@ pub trait Shape {
 }
 
 pub struct Hit {
-    pub p: DVec3,
+    pub p: Point3<f64>,
     pub t: f64,
-    pub n: DVec3,
+    pub n: Vector3<f64>,
 }
 
 impl Hit {
-    pub fn new(p: DVec3, t: f64, n: DVec3) -> Hit {
+    pub fn new(p: Point3<f64>, t: f64, n: Vector3<f64>) -> Hit {
         Hit { p: p, t: t, n: n }
     }
 
     pub fn zero() -> Hit {
-        Hit { p: DVec3::new(0.0, 0.0, 0.0),
+        Hit { p: Point3::new(0.0, 0.0, 0.0),
                   t: 0.0,
-                  n: DVec3::new(0.0, 0.0, 0.0) }
+                  n: Vector3::new(0.0, 0.0, 0.0) }
     }
 }
 
