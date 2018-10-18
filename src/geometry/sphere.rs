@@ -1,25 +1,21 @@
 use na::{Point3, Vector3};
 
 use util::math::{Ray};
-use geometry::shape::{Shape, Hit};
+use geometry::{Intersect, Hit};
 
-
-pub struct SphereShape {
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Sphere {
     pub position: Point3<f64>,
     pub radius: f64,
 }
 
-impl SphereShape {
-    pub fn new(position: Point3<f64>, radius: f64) -> SphereShape {
-        SphereShape {position: position, radius: radius}
-    }
-
-    pub fn get_normal(&self, pt: Point3<f64>) -> Vector3<f64> {
-        (pt - self.position).normalize()
+impl Sphere {
+    pub fn new(position: Point3<f64>, radius: f64) -> Sphere {
+        Sphere {position: position, radius: radius}
     }
 }
 
-impl Shape for SphereShape {
+impl Intersect for Sphere {
 
     fn intersect(&self, ray: Ray) -> Option<Hit> {
         let mut hit: Hit = Hit::zero();
@@ -50,5 +46,9 @@ impl Shape for SphereShape {
         hit.n = self.get_normal(hit.p);
 
         Some(hit)
+    }
+
+    fn get_normal(&self, pt: Point3<f64>) -> Vector3<f64> {
+        (pt - self.position).normalize()
     }
 }

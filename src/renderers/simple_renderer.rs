@@ -1,5 +1,5 @@
 use renderers::generic_renderer::GenericRenderer;
-use scene::scene::Scene;
+use scene::Scene;
 use scene::camera::Camera;
 
 struct SimpleRenderer {
